@@ -1,0 +1,166 @@
+package january2021.week2.createsortedarraythroughinstructions;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Given an integer array instructions, you are asked to create a sorted array from the elements in instructions. You start with an empty container nums. For each element from left to right in instructions, insert it into nums. The cost of each insertion is the minimum of the following:
+ * <p>
+ * The number of elements currently in nums that are strictly less than instructions[i].
+ * The number of elements currently in nums that are strictly greater than instructions[i].
+ * For example, if inserting element 3 into nums = [1,2,3,5], the cost of insertion is min(2, 1) (elements 1 and 2 are less than 3, element 5 is greater than 3) and nums will become [1,2,3,3,5].
+ * <p>
+ * Return the total cost to insert all elements from instructions into nums. Since the answer may be large, return it modulo 109 + 7
+ * <p>
+ * <p>
+ * <p>
+ * Example 1:
+ * <p>
+ * Input: instructions = [1,5,6,2]
+ * Output: 1
+ * Explanation: Begin with nums = [].
+ * Insert 1 with cost min(0, 0) = 0, now nums = [1].
+ * Insert 5 with cost min(1, 0) = 0, now nums = [1,5].
+ * Insert 6 with cost min(2, 0) = 0, now nums = [1,5,6].
+ * Insert 2 with cost min(1, 2) = 1, now nums = [1,2,5,6].
+ * The total cost is 0 + 0 + 0 + 1 = 1.
+ * Example 2:
+ * <p>
+ * Input: instructions = [1,2,3,6,5,4]
+ * Output: 3
+ * Explanation: Begin with nums = [].
+ * Insert 1 with cost min(0, 0) = 0, now nums = [1].
+ * Insert 2 with cost min(1, 0) = 0, now nums = [1,2].
+ * Insert 3 with cost min(2, 0) = 0, now nums = [1,2,3].
+ * Insert 6 with cost min(3, 0) = 0, now nums = [1,2,3,6].
+ * Insert 5 with cost min(3, 1) = 1, now nums = [1,2,3,5,6].
+ * Insert 4 with cost min(3, 2) = 2, now nums = [1,2,3,4,5,6].
+ * The total cost is 0 + 0 + 0 + 0 + 1 + 2 = 3.
+ * Example 3:
+ * <p>
+ * Input: instructions = [1,3,3,3,2,4,2,1,2]
+ * Output: 4
+ * Explanation: Begin with nums = [].
+ * Insert 1 with cost min(0, 0) = 0, now nums = [1].
+ * Insert 3 with cost min(1, 0) = 0, now nums = [1,3].
+ * Insert 3 with cost min(1, 0) = 0, now nums = [1,3,3].
+ * Insert 3 with cost min(1, 0) = 0, now nums = [1,3,3,3].
+ * Insert 2 with cost min(1, 3) = 1, now nums = [1,2,3,3,3].
+ * Insert 4 with cost min(5, 0) = 0, now nums = [1,2,3,3,3,4].
+ * ​​​​​​​Insert 2 with cost min(1, 4) = 1, now nums = [1,2,2,3,3,3,4].
+ * ​​​​​​​Insert 1 with cost min(0, 6) = 0, now nums = [1,1,2,2,3,3,3,4].
+ * ​​​​​​​Insert 2 with cost min(2, 4) = 2, now nums = [1,1,2,2,2,3,3,3,4].
+ * The total cost is 0 + 0 + 0 + 0 + 1 + 0 + 1 + 0 + 2 = 4.
+ * <p>
+ * <p>
+ * Constraints:
+ * <p>
+ * 1 <= instructions.length <= 105
+ * 1 <= instructions[i] <= 105
+ */
+class Solution {
+
+    public int createSortedArray(int[] instructions) {
+//        return createSortedArrayUsingFenwick(instructions);
+
+        List<Integer> list = new ArrayList<>();
+        long cost = 0;
+        for (int instruction : instructions) {
+
+            cost += search(list, instruction);
+            cost %= 1000000007;
+        }
+        return (int) cost;
+    }
+
+    private int createSortedArrayUsingFenwick(int[] instructions) {
+        int max = 0;
+        for (int in : instructions) {
+            max = Math.max(in, max);
+        }
+        int res = 0;
+        Fenwick fenwick = new Fenwick(max + 2);
+        for (int i = 0; i < instructions.length; i++) {
+            int curr = instructions[i];
+            int lower = fenwick.sumRange(0, curr - 1);
+            int higher = fenwick.sumRange(curr + 1, max);
+
+            res = res + Math.min(lower, higher);
+            res = res % 100000007;
+            fenwick.update(curr, 1);
+        }
+        return res;
+    }
+
+    private int search(List<Integer> list, int instruction) {
+
+        int start = 0, end = list.size();
+
+        while (start < end) {
+            int mid = start + (end - start) / 2;
+
+            if (list.get(mid) < instruction) {
+                start = mid + 1;
+            } else {
+                end = mid;
+            }
+        }
+
+        int front = start;
+
+        start = 0;
+        end = list.size();
+        while (start < end) {
+            int mid = start + (end - start) / 2;
+            if (list.get(mid) > instruction) {
+                end = mid;
+            } else {
+                start = mid + 1;
+            }
+        }
+        int costB = list.size() - end;
+
+        list.add(front, instruction);
+        return Math.min(front, costB);
+
+
+    }
+
+    public static void main(String[] args) {
+        int[] instructions = {1, 3, 3, 3, 2, 4, 2, 1, 2};
+        int sortedArray = new Solution().createSortedArray(instructions);
+        System.out.println(sortedArray);
+    }
+
+
+    class Fenwick {
+        int[] arr;
+
+        Fenwick(int len) {
+            this.arr = new int[len];
+        }
+
+        //Sum
+        public int sumRange(int beg, int end) {
+            return sum(end + 1) - sum(beg);
+        }
+
+        private int sum(int i) {
+            int sum = 0;
+            while (i > 0) {
+                sum = sum + arr[i];
+                i = i - (i & -i);
+            }
+            return sum;
+        }
+
+        private void update(int i, int val) {
+            i++;
+            while (i < arr.length) {
+                arr[i] = arr[i] + val;
+                i = i + (i & -i);
+            }
+
+        }
+    }
+}
