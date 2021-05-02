@@ -27,7 +27,7 @@ class Solution {
             } else {
                 int insertionPoint = Arrays.binarySearch(lis, 0, len, envelopes[i][1]);
                 if (insertionPoint < 0) {
-                    insertionPoint = -(insertionPoint + 1);
+                    insertionPoint = -(insertionPoint + 1); //when not found it return -(low+1); to find low
                 }
                 lis[insertionPoint] = envelopes[i][1];
             }
