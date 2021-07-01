@@ -68,13 +68,16 @@ class Solution {
     }
 
     private boolean loop(int[] nums, int k, Bits bits, int start, int currentBucketSum, int targetBucketSum) {
+
+//         # Since number of buckets is only reduced when the previous bucket has been filled,
+//            # we only need to check if all elements have been used. No need to check current sum.
         if (k == 0) {
             return bits.isAllSet();
         }
-        if (currentBucketSum == targetBucketSum) {
+        if (currentBucketSum == targetBucketSum) {//Fill remaining buckets.
             return loop(nums, k - 1, bits, 0, 0, targetBucketSum);
         }
-
+//      Find all unused numbers that can be added to the current bucket.
         for (int i = start; i < nums.length; i++) {
             if (bits.isUnSet(i) && nums[i] + currentBucketSum <= targetBucketSum) {
                 bits.set(i);
