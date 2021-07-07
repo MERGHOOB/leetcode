@@ -1,6 +1,5 @@
 package indeed.karat.minimum_knight_moves;
 
-import java.nio.charset.CoderResult;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -63,14 +62,6 @@ class Solution {
             this.y = y;
         }
 
-        public int getX() {
-            return x;
-        }
-
-        public int getY() {
-            return y;
-        }
-
 
         @Override
         public boolean equals(Object obj) {
@@ -85,5 +76,6 @@ class Solution {
 
     public static void main(String[] args) {
         System.out.println(new Solution().minKnightMoves(-1, -1));
+        System.out.println(new Solution().minKnightMoves(5, 4));
     }
 }
