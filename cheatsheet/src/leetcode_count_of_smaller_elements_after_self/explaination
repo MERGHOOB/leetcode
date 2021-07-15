@@ -1,0 +1,28 @@
+Input: 		3, 4, 2, 1, 1, 2, 5, 3
+
+Output: 	4, 5, 2, 0, 0, 0, 1, 0
+
+
+Considering the fact: (2,5) and (1,6)
+
+When 2 and 1 compared  it means 1 is smaller to 2 and because it is on right; we found that count of smaller number 2 will be increased by 1 and we know that 2,5 are sorted and they lie on left, and so count (5) should be increased to.
+We need a stable sort in this case merge sort; stable means order will remain intact.
+In such a case consider again a new number comes which is less than 2--. So again we need to update the count values for each number in left array.
+O (n) * O (n) == O (n^2)
+Can we optimize this counts
+One other thing we can do is to increment the right-count when we add something from the left. And when we add something from right; add this right-count to count(of that element)
+This will cause merge method to avoid O(n2)  o(n)
+
+And so overall algorithm will be same as merge sort  o(nlogn)
+
+How we update count(ele)  one thing we can use HashMap but what if elements has duplicates.
+Then mapping may result wrong.
+What other thing we can do we will sort the indexes or array instead of original array. In this ways index will be unique.
+Element  nums[index] where nums is the original array.
+Count(nums[index]);
+
+
+
+
+
+
