@@ -1,25 +1,25 @@
 package leetcode_word_ladder;
 
-import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class SolutionUsingDeque {
 
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
 
-        Deque<String> stack = new LinkedList<>();
+        Queue<String> queue = new LinkedList<>(); // for adding at last and receiving from first
 
-        stack.add(beginWord);
+        queue.add(beginWord);
         int level = 1;
 
         boolean[] visited = new boolean[wordList.size()];
 
-        while (!stack.isEmpty()) {
-            int size = stack.size();
+        while (!queue.isEmpty()) {
+            int size = queue.size();
             for (int i = 0; i < size; i++) {
 
-                String temp = stack.pollFirst();
+                String temp = queue.poll();
                 if (temp.equals(endWord)) {
                     return level;
                 }
@@ -28,7 +28,7 @@ public class SolutionUsingDeque {
                     if (!visited[j]
                             && !temp.equals(wordList.get(j))
                             && check(temp, wordList.get(j))) {
-                        stack.addLast(wordList.get(j));
+                        queue.add(wordList.get(j));
                         visited[j] = true;
                     }
                 }
