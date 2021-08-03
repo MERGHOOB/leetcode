@@ -6,7 +6,7 @@ import java.util.List;
 public class ConferenceRoom extends BaseEntity {
     Long id;
     String conferenceRoomName;
-    List<Slot> slots = new ArrayList<>();
+    List<String> slots = new ArrayList<>();
 
 
     public ConferenceRoom() {
@@ -28,11 +28,11 @@ public class ConferenceRoom extends BaseEntity {
         this.conferenceRoomName = conferenceRoomName;
     }
 
-    public List<Slot> getSlots() {
+    public List<String> getSlots() {
         return slots;
     }
 
-    public void setSlots(List<Slot> slots) {
+    public void setSlots(List<String> slots) {
         this.slots = slots;
     }
 }

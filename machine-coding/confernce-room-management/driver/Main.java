@@ -15,6 +15,8 @@ public class Main {
     public static final String BUILDING = "BUILDING";
     public static final String FLOOR = "FLOOR";
     public static final String CONFROOM = "CONFROOM";
+    public static final String
+            BOOKING = "BOOKING";
 
     public static void main(String[] args) {
 
@@ -43,12 +45,33 @@ public class Main {
                 }
 
             } else if (cmd.equalsIgnoreCase(BOOK)) {
+                String slot = scanner.next();
+                String buildingName = scanner.next();
+                String floorName = scanner.next();
+                String conferenceRoomName = scanner.next();
+
+                ConferenceRoomManagementSystem.getInstance().bookSlot(buildingName, floorName, conferenceRoomName, slot);
 
             } else if (cmd.equalsIgnoreCase(CANCEL)) {
+                String slot = scanner.next();
+                String buildingName = scanner.next();
+                String floorName = scanner.next();
+                String conferenceRoomName = scanner.next();
+                ConferenceRoomManagementSystem.getInstance().cancelSlot(buildingName, floorName, conferenceRoomName, slot);
 
             } else if (cmd.equalsIgnoreCase(LIST)) {
+                cmd = scanner.next();
+                if (cmd.equalsIgnoreCase(BOOKING)) {
+                    String buildingName = scanner.next();
+                    String floorName = scanner.next();
+                    ConferenceRoomManagementSystem.getInstance().listBookings(buildingName, floorName);
+                }
 
             } else if (cmd.equalsIgnoreCase(SEARCH)) {
+                String slotName = scanner.next();
+                String buildingName = scanner.next();
+                String floorName = scanner.next();
+                ConferenceRoomManagementSystem.getInstance().search(slotName, buildingName, floorName);
 
             } else if (cmd.equalsIgnoreCase(EXIT)) {
                 return;
