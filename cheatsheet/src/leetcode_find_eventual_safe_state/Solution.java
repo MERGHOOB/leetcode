@@ -24,10 +24,14 @@ class Solution {
             return color[i] == 1;
         }
         color[i] = 2;
+
+
         for (int j = 0; j < graph[i].length; j++) {
             if (!dfs(graph, graph[i][j], color))
                 return false;
         }
+
+
         color[i] = 1;
         return true;
     }
