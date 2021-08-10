@@ -1,5 +1,7 @@
 package leetcode_student_attendance_record_II;
 
+import java.util.Arrays;
+
 /*
 An attendance record for a student can be represented as a string where each character signifies
 whether the student was absent, late, or present on that day. The record only contains the following three characters:
@@ -87,7 +89,8 @@ class Solution {
                 res %= MOD;
             }
         }
-
+        Integer a[]  = new Integer[7];
+        Integer[] integers = Arrays.copyOf(a, a.length);
         return res;
     }
 
