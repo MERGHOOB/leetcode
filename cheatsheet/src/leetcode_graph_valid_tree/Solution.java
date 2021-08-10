@@ -1,5 +1,9 @@
 package leetcode_graph_valid_tree;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 class Solution {
     /**
      * @param n:     An integer
@@ -8,7 +12,15 @@ class Solution {
      */
     public boolean validTree(int n, int[][] edges) {
         // write your code here
-
+        int [][] input  = {{1,3},{2,6},{8,10},{15,18}};
+        List<List<Integer>> list  = new ArrayList<>();
+        for(int [] in: input) {
+            List<Integer> temp  = new ArrayList<>();
+            for(int x: in) {
+                temp.add(x);
+            }
+            list.add(temp);
+        }
         if (edges.length + 1 != n) {
             return false;
         }
