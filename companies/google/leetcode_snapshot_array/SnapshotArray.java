@@ -1,6 +1,7 @@
 package leetcode_snapshot_array;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -16,6 +17,7 @@ class SnapshotArray {
             arr.add(i, new TreeMap<>());
             arr.get(i).put(0, 0);
         }
+
     }
 
     public void set(int index, int val) {
