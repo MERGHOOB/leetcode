@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/cheatsheet/cheatsheet.iml" filepath="$PROJECT_DIR$/cheatsheet/cheatsheet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/codeforces/codeforces.iml" filepath="$PROJECT_DIR$/codeforces/codeforces.iml" />
       <module fileurl="file://$PROJECT_DIR$/companies/companies.iml" filepath="$PROJECT_DIR$/companies/companies.iml" />
       <module fileurl="file://$PROJECT_DIR$/educative-oops/educative-oops.iml" filepath="$PROJECT_DIR$/educative-oops/educative-oops.iml" />
       <module fileurl="file://$PROJECT_DIR$/leetcode.iml" filepath="$PROJECT_DIR$/leetcode.iml" />
