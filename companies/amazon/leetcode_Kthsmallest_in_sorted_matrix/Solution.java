@@ -1,5 +1,6 @@
 package leetcode_Kthsmallest_in_sorted_matrix;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 class Solution {
@@ -9,7 +10,7 @@ class Solution {
         int n = matrix.length;
 
 
-        PriorityQueue<Triplet> pq = new PriorityQueue<>((a, b) -> a.val - b.val);
+        PriorityQueue<Triplet> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a.val));
 
         for (int i = 0; i < n; i++) {
             pq.add(new Triplet(matrix[i][0], i, 0));
