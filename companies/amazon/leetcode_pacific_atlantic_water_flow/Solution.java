@@ -1,6 +1,7 @@
 package leetcode_pacific_atlantic_water_flow;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 class Solution {
@@ -38,7 +39,7 @@ class Solution {
             for (int j = 0; j < n; j++) {
 
                 if (atlantic[i][j] && pacific[i][j]) {
-                    res.add(List.of(i, j));
+                    res.add(Arrays.asList(i, j));
                 }
 
 

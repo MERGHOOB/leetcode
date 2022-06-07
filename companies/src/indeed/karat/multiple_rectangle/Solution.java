@@ -1,6 +1,7 @@
 package indeed.karat.multiple_rectangle;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /*
@@ -50,7 +51,7 @@ public class Solution {
             for (int j = 0; j < grid[i].length; j++) {
                 if (grid[i][j] == 1 && !visited[i][j]) {
                     dfs(i, j, grid, visited);
-                    coordinates.add(List.of(i, j, rowMax, colMax)); // adding top coordinate
+                    coordinates.add(Arrays.asList(i, j, rowMax, colMax)); // adding top coordinate
 
                 }
             }

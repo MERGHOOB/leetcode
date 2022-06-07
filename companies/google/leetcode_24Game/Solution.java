@@ -1,6 +1,7 @@
 package leetcode_24Game;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 class Solution {
@@ -23,14 +24,14 @@ class Solution {
 
     private boolean judgeWithoutRounding(int[] cards) {
 //        List.of(new N)
-        List<Number> numbers = List.of(
+        Number[] numbers = {
                 new Number(cards[0]),
                 new Number(cards[1]),
                 new Number(cards[2]),
                 new Number(cards[3])
-        );
+        };
 
-        return dfs(numbers);
+        return dfs(Arrays.asList(numbers));
     }
 
     private boolean dfs(List<Number> numbers) {

@@ -1,6 +1,7 @@
 package leetcode_find_K_pairs_with_smallest_sums;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.PriorityQueue;
 
@@ -21,7 +22,7 @@ class Solution {
         while (k-- != 0 && !pq.isEmpty()) {   // O(k)
 
             int[] poll = pq.poll();
-            res.add(List.of(poll[0], poll[1]));
+            res.add(Arrays.asList(poll[0], poll[1]));
 
             if ((poll[2] + 1) < nums2.length) {
                 pq.offer(new int[]{poll[0], nums2[poll[2] + 1], poll[2] + 1});

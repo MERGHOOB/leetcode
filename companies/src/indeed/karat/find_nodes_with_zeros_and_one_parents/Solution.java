@@ -35,7 +35,7 @@ class Solution {
             nodesWithZeroParent.add(node);
         }
 
-        return List.of(nodesWithZeroParent, nodesWithOneParent);
+        return Arrays.asList(nodesWithZeroParent, nodesWithOneParent);
     }
 
 
